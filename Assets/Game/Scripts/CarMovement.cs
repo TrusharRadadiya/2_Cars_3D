@@ -20,6 +20,34 @@ public class CarMovement : Movement
         {
             var pos = _thisTransform.position;
 
+            if (Input.GetMouseButtonUp(0))
+            {
+                if ((_carSide == CarSide.Left && Input.mousePosition.x < Screen.width * .5f) ||
+                    (_carSide == CarSide.Right && Input.mousePosition.x > Screen.width * .5f))
+                {
+                    if (!_isRight)
+                    {
+                        _isRight = true;
+                        _canInput = false;
+                        DOTween.Sequence()
+                            .Append(_thisTransform.DOMoveX(pos.x + _posToUpdate, .15f).SetEase(Ease.InOutSine))
+                            .Join(_thisTransform.DORotate(new Vector3(0, _degreeToRotate, 0), .1f))
+                            .Append(_thisTransform.DORotate(new Vector3(0, 0, 0), .05f))
+                            .AppendCallback(() => _canInput = true);
+                    }
+                    else if (_isRight)
+                    {
+                        _isRight = false;
+                        _canInput = false;
+                        DOTween.Sequence()
+                            .Append(_thisTransform.DOMoveX(pos.x - _posToUpdate, .15f).SetEase(Ease.InOutSine))
+                            .Join(_thisTransform.DORotate(new Vector3(0, -_degreeToRotate, 0), .1f))
+                            .Append(_thisTransform.DORotate(new Vector3(0, 0, 0), .05f))
+                            .AppendCallback(() => _canInput = true);
+                    }
+                }
+            }
+
             if (Input.GetKeyDown(KeyCode.RightArrow) && !_isRight)
             {
                 _isRight = true;
