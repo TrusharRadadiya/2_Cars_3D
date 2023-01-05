@@ -72,6 +72,14 @@ public class CarMovement : Movement
 
         base.Update();
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("RoadObject"))
+        {
+            Destroy(other.gameObject);
+        }
+    }
 }
 
 public enum CarSide

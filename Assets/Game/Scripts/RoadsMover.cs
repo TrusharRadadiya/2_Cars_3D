@@ -19,6 +19,8 @@ public class RoadsMover : MonoBehaviour
             _currentZPos += 2;
             roadsPos.z = _currentZPos;
             other.transform.position = roadsPos;
+
+            other.GetComponent<Roads>().SpawnRoadObject();
         }
     }
 }
