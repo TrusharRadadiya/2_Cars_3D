@@ -7,6 +7,7 @@ TagManager:
   - Roads
   - Car
   - RoadObject
+  - WrongObject
   layers:
   - Default
   - TransparentFX

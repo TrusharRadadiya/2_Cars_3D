@@ -564,6 +564,9 @@ MonoBehaviour:
   _roadObject: {fileID: 7635706882357438510, guid: 9c18f5bfbe423154881c7a77e481a7b5,
     type: 3}
   _spawnProbability: 0.5
+  _wrongObject: {fileID: 7635706882357438510, guid: 257db989bb90dae4580df35b468a866b,
+    type: 3}
+  _wrongObjProbability: 0.1
 --- !u!1 &4644594499654768678
 GameObject:
   m_ObjectHideFlags: 0

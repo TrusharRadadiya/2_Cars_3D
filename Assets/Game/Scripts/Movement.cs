@@ -1,8 +1,9 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private float _speed = 10f;    
+    [SerializeField] protected float _speed = 10f;
     protected Transform _thisTransform;
 
     public virtual void Awake()
@@ -10,7 +11,7 @@ public class Movement : MonoBehaviour
         _thisTransform = transform;
     }
 
-    public virtual void Update()
+    public void Update()
     {
         _thisTransform.position += Vector3.forward * _speed * Time.deltaTime;
     }

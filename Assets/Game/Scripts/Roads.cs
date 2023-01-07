@@ -4,30 +4,44 @@ public class Roads : MonoBehaviour
 {
     [SerializeField] private Transform[] _leftSpawnPos;
     [SerializeField] private Transform[] _rightSpawnPos;
-    [SerializeField] private Transform _roadObject;
+    [Space, SerializeField] private Transform _roadObject;
     [SerializeField, Range(0f, 1f)] private float _spawnProbability = .5f;
+    [Space, SerializeField] private Transform _wrongObject;
+    [SerializeField, Range(0f, 1f)] private float _wrongObjProbability = .1f;
 
     public void SpawnRoadObject()
     {
         Vector3 spawnPos = Vector3.zero;
-        for (int i = 0; i < 2; i++)
+        Transform objToSpawn = null;
+        for (int i = 0; i < 2; i++) // if 0 = leftSpawnPos, 1 = rightSpawnPos
         {
-            var randVal = Random.Range(0, 2);
-            if (randVal == 1)
+            var spawnVal = Random.Range(0, 2); // Spawn if got 1
+            if (spawnVal == 1)
             {
-                if (Random.Range(0f, 1f) < _spawnProbability) return;
-
-                if (i == 0)
+                var objProb = Random.Range(0, 2); // if 1 = roadObject, otherwise = wrongObject
+                if (objProb == 1)
                 {
-                    randVal = Random.Range(0, _leftSpawnPos.Length);
-                    spawnPos = _leftSpawnPos[randVal].position;
+                    if (Random.Range(0f, 1f) > _spawnProbability) return;
+                    objToSpawn = _roadObject;
                 }
                 else
                 {
-                    randVal = Random.Range(0, _rightSpawnPos.Length);
-                    spawnPos = _rightSpawnPos[randVal].position;
+                    if (Random.Range(0f, 1f) > _wrongObjProbability) return;
+                    objToSpawn = _wrongObject;
                 }
-                var obj = Instantiate(_roadObject, spawnPos, Quaternion.identity);
+
+                if (i == 0)
+                {
+                    spawnVal = Random.Range(0, _leftSpawnPos.Length);
+                    spawnPos = _leftSpawnPos[spawnVal].position;
+                }
+                else
+                {
+                    spawnVal = Random.Range(0, _rightSpawnPos.Length);
+                    spawnPos = _rightSpawnPos[spawnVal].position;
+                }
+
+                var obj = Instantiate(objToSpawn, spawnPos, Quaternion.identity);
                 Destroy(obj.gameObject, 5);
             }
         }

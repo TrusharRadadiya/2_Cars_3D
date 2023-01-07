@@ -7,7 +7,6 @@ public class RoadsMover : MonoBehaviour
 
     private void Start()
     {
-        Application.targetFrameRate = 60;
         _currentZPos = _lastRoad.position.z;
     }
 

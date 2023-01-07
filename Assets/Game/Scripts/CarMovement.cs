@@ -1,20 +1,22 @@
 using UnityEngine;
 using DG.Tweening;
 
-public class CarMovement : Movement
+public class CarMovement : MonoBehaviour
 {
-    [SerializeField] private CarSide _carSide;
-    [SerializeField] private bool _isRight = false;
+    public CarSide carSide;
+    public bool isRight = false;
     [SerializeField] private float _posToUpdate = 1.1f;
     [SerializeField] private float _degreeToRotate = 35f;
+    [SerializeField] private CameraShake _cameraShake;
     private bool _canInput = true;
+    private Transform _thisTransform;
 
-    public override void Awake()
+    public void Awake()
     {
-        base.Awake();
+        _thisTransform = transform;
     }
 
-    public override void Update()
+    public void Update()
     {
         if (_canInput)
         {
@@ -22,25 +24,25 @@ public class CarMovement : Movement
 
             if (Input.GetMouseButtonUp(0))
             {
-                if ((_carSide == CarSide.Left && Input.mousePosition.x < Screen.width * .5f) ||
-                    (_carSide == CarSide.Right && Input.mousePosition.x > Screen.width * .5f))
+                if ((carSide == CarSide.Left && Input.mousePosition.x < Screen.width * .5f) ||
+                    (carSide == CarSide.Right && Input.mousePosition.x > Screen.width * .5f))
                 {
-                    if (!_isRight)
+                    if (!isRight)
                     {
-                        _isRight = true;
+                        isRight = true;
                         _canInput = false;
                         DOTween.Sequence()
-                            .Append(_thisTransform.DOMoveX(pos.x + _posToUpdate, .15f).SetEase(Ease.InOutSine))
+                            .Append(_thisTransform.DOLocalMoveX(pos.x + _posToUpdate, .15f).SetEase(Ease.InOutSine))
                             .Join(_thisTransform.DORotate(new Vector3(0, _degreeToRotate, 0), .1f))
                             .Append(_thisTransform.DORotate(new Vector3(0, 0, 0), .05f))
                             .AppendCallback(() => _canInput = true);
                     }
-                    else if (_isRight)
+                    else if (isRight)
                     {
-                        _isRight = false;
+                        isRight = false;
                         _canInput = false;
                         DOTween.Sequence()
-                            .Append(_thisTransform.DOMoveX(pos.x - _posToUpdate, .15f).SetEase(Ease.InOutSine))
+                            .Append(_thisTransform.DOLocalMoveX(pos.x - _posToUpdate, .15f).SetEase(Ease.InOutSine))
                             .Join(_thisTransform.DORotate(new Vector3(0, -_degreeToRotate, 0), .1f))
                             .Append(_thisTransform.DORotate(new Vector3(0, 0, 0), .05f))
                             .AppendCallback(() => _canInput = true);
@@ -48,29 +50,42 @@ public class CarMovement : Movement
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.RightArrow) && !_isRight)
+#if UNITY_EDITOR
+            if (Input.GetKeyDown(KeyCode.RightArrow) && !isRight)
             {
-                _isRight = true;
+                isRight = true;
                 _canInput = false;
                 DOTween.Sequence()
-                    .Append(_thisTransform.DOMoveX(pos.x + _posToUpdate, .15f).SetEase(Ease.InOutSine))
+                    .Append(_thisTransform.DOLocalMoveX(pos.x + _posToUpdate, .15f).SetEase(Ease.InOutSine))
                     .Join(_thisTransform.DORotate(new Vector3(0, _degreeToRotate, 0), .1f))
                     .Append(_thisTransform.DORotate(new Vector3(0, 0, 0), .05f))
-                    .AppendCallback(() => _canInput = true);
+                    .AppendCallback(() => {
+                        _canInput = true;
+                        _cameraShake.Shake();
+                    });
             }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow) && _isRight)
+            else if (Input.GetKeyDown(KeyCode.LeftArrow) && isRight)
             {
-                _isRight = false;
+                isRight = false;
                 _canInput = false;
                 DOTween.Sequence()
-                    .Append(_thisTransform.DOMoveX(pos.x - _posToUpdate, .15f).SetEase(Ease.InOutSine))
+                    .Append(_thisTransform.DOLocalMoveX(pos.x - _posToUpdate, .15f).SetEase(Ease.InOutSine))
                     .Join(_thisTransform.DORotate(new Vector3(0, -_degreeToRotate, 0), .1f))
                     .Append(_thisTransform.DORotate(new Vector3(0, 0, 0), .05f))
-                    .AppendCallback(() => _canInput = true);
+                    .AppendCallback(() => {
+                        _canInput = true;
+                        _cameraShake.Shake();
+                    });
             }
+#endif
         }
 
-        base.Update();
+        if (Input.GetKeyDown(KeyCode.Space) && carSide == CarSide.Right)
+        {
+            DOTween.Sequence()
+                .Append(_thisTransform.DOLocalMoveZ(2, .15f).SetEase(Ease.InOutFlash))
+                .Append(_thisTransform.DOLocalMoveZ(0, .15f));
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -78,6 +93,10 @@ public class CarMovement : Movement
         if (other.CompareTag("RoadObject"))
         {
             Destroy(other.gameObject);
+
+            DOTween.Sequence()
+                .Append(_thisTransform.DOScale(.5f, .15f))
+                .Append(_thisTransform.DOScale(.4f, .15f).SetEase(Ease.InOutBounce));
         }
     }
 }
