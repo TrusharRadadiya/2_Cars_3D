@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7635706882357438511}
   - component: {fileID: 7635706882357438504}
   - component: {fileID: 1213495650285461386}
+  - component: {fileID: 3761595363062179486}
   m_Layer: 0
   m_Name: WrongObject
   m_TagString: WrongObject
@@ -41,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7635706882357438506}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -5495902117074765545, guid: b9e91477deaca0643b96696e10b46370, type: 3}
 --- !u!23 &7635706882357438504
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -105,3 +106,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3761595363062179486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7635706882357438506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbe4be2612f1bde4783d0f4360a51019, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _brokenPiece: {fileID: 8043030963322924772, guid: 3a63bba880829304f896ded4c9d89544,
+    type: 3}
+  _explosionForce: 700

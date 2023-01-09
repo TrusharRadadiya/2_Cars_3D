@@ -7,9 +7,12 @@ public class CarMovement : MonoBehaviour
     public bool isRight = false;
     [SerializeField] private float _posToUpdate = 1.1f;
     [SerializeField] private float _degreeToRotate = 35f;
+    [SerializeField] private MeshRenderer _carBodyRenderer;
+    [SerializeField] private Color _boostColor;
     [SerializeField] private CameraShake _cameraShake;
     private bool _canInput = true;
     private Transform _thisTransform;
+    public bool IsBoosted { get; set; }
 
     public void Awake()
     {
@@ -35,7 +38,10 @@ public class CarMovement : MonoBehaviour
                             .Append(_thisTransform.DOLocalMoveX(pos.x + _posToUpdate, .15f).SetEase(Ease.InOutSine))
                             .Join(_thisTransform.DORotate(new Vector3(0, _degreeToRotate, 0), .1f))
                             .Append(_thisTransform.DORotate(new Vector3(0, 0, 0), .05f))
-                            .AppendCallback(() => _canInput = true);
+                            .AppendCallback(() => {
+                                _canInput = true;
+                                _cameraShake.Shake();
+                            });
                     }
                     else if (isRight)
                     {
@@ -45,7 +51,10 @@ public class CarMovement : MonoBehaviour
                             .Append(_thisTransform.DOLocalMoveX(pos.x - _posToUpdate, .15f).SetEase(Ease.InOutSine))
                             .Join(_thisTransform.DORotate(new Vector3(0, -_degreeToRotate, 0), .1f))
                             .Append(_thisTransform.DORotate(new Vector3(0, 0, 0), .05f))
-                            .AppendCallback(() => _canInput = true);
+                            .AppendCallback(() => {
+                                _canInput = true;
+                                _cameraShake.Shake();
+                            });
                     }
                 }
             }
@@ -80,8 +89,10 @@ public class CarMovement : MonoBehaviour
 #endif
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && carSide == CarSide.Right)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
+            IsBoosted = true;
+            
             DOTween.Sequence()
                 .Append(_thisTransform.DOLocalMoveZ(2, .15f).SetEase(Ease.InOutFlash))
                 .Append(_thisTransform.DOLocalMoveZ(0, .15f));
