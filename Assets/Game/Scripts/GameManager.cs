@@ -3,6 +3,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Movement _movementObj;
+    [SerializeField] private CameraShake _cameraShake;
 
     public static GameManager Instance;
 
@@ -20,5 +21,8 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         _movementObj.SetMovement(false);
+        _cameraShake.Shake();
     }
+
+    public void ShakeCamera() => _cameraShake.Shake();
 }

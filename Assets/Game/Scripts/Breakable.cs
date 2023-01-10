@@ -7,32 +7,6 @@ public class Breakable : MonoBehaviour
     [SerializeField] private float _explosionForce = 100;
     private bool _isBroken = false;
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Car"))
-    //    {
-    //        var carMovement = collision.gameObject.GetComponent<CarMovement>();
-    //        if (_isBroken && !carMovement.IsBoosted) return;
-
-    //        if (collision.relativeVelocity.magnitude >= _breakForce)
-    //        {
-    //            _isBroken = true;
-    //            var brokenPiece = Instantiate(_brokenPiece, transform.position, transform.rotation);
-
-    //            var thisRend = GetComponent<Renderer>();
-    //            var rends = brokenPiece.GetComponentsInChildren<Renderer>();
-    //            foreach (var rend in rends) rend.material = thisRend.material;
-
-    //            var rbs = brokenPiece.GetComponentsInChildren<Rigidbody>();
-    //            foreach (var rb in rbs)
-    //                rb.AddExplosionForce(collision.relativeVelocity.magnitude * _explosionForce, collision.contacts[0].point, 2);
-
-    //            Destroy(this.gameObject);
-    //            carMovement.IsBoosted = false;
-    //        }
-    //    }
-    //}
-
     private void OnTriggerEnter(Collider other)
     {
         if (_isBroken) return;
@@ -53,6 +27,7 @@ public class Breakable : MonoBehaviour
             }
 
             _isBroken = true;
+            GameManager.Instance.ShakeCamera();
             var brokenPiece = Instantiate(_brokenPiece, this.transform.position, this.transform.rotation);
 
             var thisRend = GetComponent<Renderer>();
@@ -66,6 +41,7 @@ public class Breakable : MonoBehaviour
             }
 
             Destroy(this.gameObject);
+            Destroy(brokenPiece.gameObject, 5);
             carMovement.IsBoosted = false;
         }
     }

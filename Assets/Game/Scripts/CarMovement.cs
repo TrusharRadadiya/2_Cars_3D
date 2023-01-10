@@ -8,8 +8,7 @@ public class CarMovement : MonoBehaviour
     [SerializeField] private float _posToUpdate = 1.1f;
     [SerializeField] private float _degreeToRotate = 35f;
     [SerializeField] private MeshRenderer _carBodyRenderer;
-    [SerializeField] private Color _boostColor;
-    [SerializeField] private CameraShake _cameraShake;
+    [SerializeField] private GameObject _boostTrails;
     private bool _canInput = true;
     private Transform _thisTransform;
     public bool IsBoosted { get; set; }
@@ -40,7 +39,7 @@ public class CarMovement : MonoBehaviour
                             .Append(_thisTransform.DORotate(new Vector3(0, 0, 0), .05f))
                             .AppendCallback(() => {
                                 _canInput = true;
-                                _cameraShake.Shake();
+                                GameManager.Instance.ShakeCamera();
                             });
                     }
                     else if (isRight)
@@ -53,7 +52,7 @@ public class CarMovement : MonoBehaviour
                             .Append(_thisTransform.DORotate(new Vector3(0, 0, 0), .05f))
                             .AppendCallback(() => {
                                 _canInput = true;
-                                _cameraShake.Shake();
+                                GameManager.Instance.ShakeCamera();
                             });
                     }
                 }
@@ -70,7 +69,7 @@ public class CarMovement : MonoBehaviour
                     .Append(_thisTransform.DORotate(new Vector3(0, 0, 0), .05f))
                     .AppendCallback(() => {
                         _canInput = true;
-                        _cameraShake.Shake();
+                        GameManager.Instance.ShakeCamera();
                     });
             }
             else if (Input.GetKeyDown(KeyCode.LeftArrow) && isRight)
@@ -83,7 +82,7 @@ public class CarMovement : MonoBehaviour
                     .Append(_thisTransform.DORotate(new Vector3(0, 0, 0), .05f))
                     .AppendCallback(() => {
                         _canInput = true;
-                        _cameraShake.Shake();
+                        GameManager.Instance.ShakeCamera();
                     });
             }
 #endif
@@ -92,10 +91,16 @@ public class CarMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             IsBoosted = true;
+            _boostTrails.SetActive(true);
             
             DOTween.Sequence()
-                .Append(_thisTransform.DOLocalMoveZ(2, .15f).SetEase(Ease.InOutFlash))
-                .Append(_thisTransform.DOLocalMoveZ(0, .15f));
+                .Append(_thisTransform.DOLocalMoveZ(2, .15f).SetEase(Ease.InOutFlash))                
+                .Append(_thisTransform.DOLocalMoveZ(0, .15f))
+                .AppendCallback(() =>
+                {
+                    IsBoosted = false;
+                    _boostTrails.SetActive(false);
+                });
         }
     }
 
