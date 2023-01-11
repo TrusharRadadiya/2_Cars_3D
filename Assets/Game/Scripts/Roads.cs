@@ -42,7 +42,7 @@ public class Roads : MonoBehaviour
                 }
 
                 var obj = Instantiate(objToSpawn, spawnPos, Quaternion.identity);
-                Destroy(obj.gameObject, 5);
+                Destroy(obj.gameObject, 10);
             }
         }
     }

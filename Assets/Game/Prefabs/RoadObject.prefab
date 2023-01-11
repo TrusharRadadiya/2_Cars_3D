@@ -44,8 +44,8 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.227451, g: 0.75294125, b: 0.3529412, a: 1}
-  m_Intensity: 2.29
+  m_Color: {r: 0.9725491, g: 0.8078432, b: 0.9960785, a: 1}
+  m_Intensity: 0.1
   m_Range: 1
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -151,7 +151,7 @@ Transform:
   m_Children:
   - {fileID: 3744698960672380504}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7635706882357438511
 MeshFilter:

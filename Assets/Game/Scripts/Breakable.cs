@@ -20,7 +20,7 @@ public class Breakable : MonoBehaviour
                 other.isTrigger = false;
                 var rb = other.GetComponent<Rigidbody>();
                 rb.isKinematic = false;
-                rb.AddExplosionForce(100, this.transform.position, 1f, .1f);
+                rb.AddExplosionForce(2, this.transform.position, 1f, .1f, ForceMode.Impulse);
                 rb.constraints = RigidbodyConstraints.None;
                 
                 return;
@@ -37,11 +37,11 @@ public class Breakable : MonoBehaviour
             var rbs = brokenPiece.GetComponentsInChildren<Rigidbody>();
             foreach (var rb in rbs)
             {
-                rb.AddExplosionForce(Random.Range(_explosionForce * .5f, _explosionForce), this.transform.position, 1, .05f);                
+                rb.AddExplosionForce(_explosionForce, this.transform.position, 1, .05f, ForceMode.Impulse);                
             }
 
             Destroy(this.gameObject);
-            Destroy(brokenPiece.gameObject, 5);
+            Destroy(brokenPiece.gameObject, 10);
             carMovement.IsBoosted = false;
         }
     }
