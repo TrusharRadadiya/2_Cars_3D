@@ -118,6 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbe4be2612f1bde4783d0f4360a51019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _brokenPiece: {fileID: 8043030963322924772, guid: 3a63bba880829304f896ded4c9d89544,
+  _brokenPiece: {fileID: 7265791229070472286, guid: 3a63bba880829304f896ded4c9d89544,
     type: 3}
   _explosionForce: 50

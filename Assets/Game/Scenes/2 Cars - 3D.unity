@@ -698,6 +698,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Roads (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4644594499654768672, guid: baf3770d0d58d1b408e75a2c84621672,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2958,6 +2963,7 @@ MonoBehaviour:
   _movementObj: {fileID: 1338264513}
   _cameraShake: {fileID: 1838114203}
   _speedVolume: {fileID: 1524049409}
+  spawner: {fileID: 0}
 --- !u!1001 &1990594159
 PrefabInstance:
   m_ObjectHideFlags: 0

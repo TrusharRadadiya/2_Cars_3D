@@ -91,7 +91,8 @@ public class CarMovement : MonoBehaviour
             }
 
 #if UNITY_EDITOR
-            if (Input.GetKeyDown(KeyCode.Space))
+            if ((Input.GetKeyDown(KeyCode.UpArrow) && carSide == CarSide.Right) ||
+                (Input.GetKeyDown(KeyCode.W) && carSide == CarSide.Left))
             {
                 IsBoosted = true;
                 _boostTrails.SetActive(true);
@@ -110,7 +111,8 @@ public class CarMovement : MonoBehaviour
                         _boostTrails.SetActive(false);
                     });
             }
-            else if (Input.GetKeyDown(KeyCode.RightArrow) && !isRight)
+            else if (((Input.GetKeyDown(KeyCode.RightArrow) && carSide == CarSide.Right) ||
+                    (Input.GetKeyDown(KeyCode.D) && carSide == CarSide.Left)) && !isRight)
             {
                 isRight = true;
                 _canInput = false;
@@ -123,7 +125,8 @@ public class CarMovement : MonoBehaviour
                         GameManager.Instance.ShakeCamera();
                     });
             }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow) && isRight)
+            else if (((Input.GetKeyDown(KeyCode.LeftArrow) && carSide == CarSide.Right) ||
+                    (Input.GetKeyDown(KeyCode.A) && carSide == CarSide.Left)) && isRight)
             {
                 isRight = false;
                 _canInput = false;

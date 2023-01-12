@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Breakable : MonoBehaviour
 {
-    [SerializeField] private GameObject _brokenPiece;
-    [SerializeField] private float _explosionForce = 100;
+    [SerializeField] private Transform _brokenPiece;
+    [SerializeField] private float _explosionForce = 100;    
     private bool _isBroken = false;
 
     private void OnTriggerEnter(Collider other)
@@ -28,19 +28,13 @@ public class Breakable : MonoBehaviour
 
             _isBroken = true;
             GameManager.Instance.ShakeCamera();
-            var brokenPiece = Instantiate(_brokenPiece, this.transform.position, this.transform.rotation);
-
-            var thisRend = GetComponent<Renderer>();
-            var rends = brokenPiece.GetComponentsInChildren<Renderer>();
-            foreach (var rend in rends) rend.material = thisRend.material;
+            var brokenPiece = Instantiate(_brokenPiece, transform.position, transform.rotation);            
 
             var rbs = brokenPiece.GetComponentsInChildren<Rigidbody>();
             foreach (var rb in rbs)
-            {
-                rb.AddExplosionForce(_explosionForce, this.transform.position, 1, .05f, ForceMode.Impulse);                
-            }
+                rb.AddExplosionForce(_explosionForce, this.transform.position, 1, .05f, ForceMode.Impulse);
 
-            Destroy(this.gameObject);
+            Destroy(gameObject);
             Destroy(brokenPiece.gameObject, 10);
             carMovement.IsBoosted = false;
         }

@@ -22,6 +22,11 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
     }
 
+    private void Start()
+    {
+        Application.targetFrameRate = 120;
+    }
+
     public void GameOver()
     {
         _movementObj.SetMovement(false);
