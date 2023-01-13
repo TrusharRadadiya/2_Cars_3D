@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 70423957}
   - component: {fileID: 70423956}
   - component: {fileID: 70423955}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Blue Car
   m_TagString: Car
   m_Icon: {fileID: 0}
@@ -322,6 +322,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Boost Trail
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341300212709265102, guid: 32c90fcc58618754db3d8bf11817437b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5341300212709265103, guid: 32c90fcc58618754db3d8bf11817437b,
         type: 3}
@@ -481,6 +486,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boost Trail (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5341300212709265102, guid: 32c90fcc58618754db3d8bf11817437b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5341300212709265103, guid: 32c90fcc58618754db3d8bf11817437b,
         type: 3}
       propertyPath: m_RootOrder
@@ -559,6 +569,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Trail
+      objectReference: {fileID: 0}
+    - target: {fileID: 7983962889174152360, guid: b8fef8b7f97fa934092e1f68659f987e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7983962889174152361, guid: b8fef8b7f97fa934092e1f68659f987e,
         type: 3}
@@ -723,6 +738,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Trail
+      objectReference: {fileID: 0}
+    - target: {fileID: 7983962889174152360, guid: b8fef8b7f97fa934092e1f68659f987e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7983962889174152361, guid: b8fef8b7f97fa934092e1f68659f987e,
         type: 3}
@@ -954,7 +974,7 @@ GameObject:
   - component: {fileID: 605451231}
   - component: {fileID: 605451233}
   - component: {fileID: 605451232}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wheel_backRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1038,7 +1058,7 @@ GameObject:
   - component: {fileID: 620333789}
   - component: {fileID: 620333791}
   - component: {fileID: 620333790}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1127,7 +1147,7 @@ GameObject:
   - component: {fileID: 646308297}
   - component: {fileID: 646308299}
   - component: {fileID: 646308298}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wheel_frontRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1211,6 +1231,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Trail
+      objectReference: {fileID: 0}
+    - target: {fileID: 7983962889174152360, guid: b8fef8b7f97fa934092e1f68659f987e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7983962889174152361, guid: b8fef8b7f97fa934092e1f68659f987e,
         type: 3}
@@ -1325,7 +1350,7 @@ GameObject:
   - component: {fileID: 915107472}
   - component: {fileID: 915107474}
   - component: {fileID: 915107473}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wheel_frontLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1408,7 +1433,7 @@ GameObject:
   - component: {fileID: 1080645645}
   - component: {fileID: 1080645647}
   - component: {fileID: 1080645646}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wheel_backLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1557,7 +1582,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1165071014}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Boost Trails
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1590,7 +1615,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1187159980}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Boost Trails (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1644,7 +1669,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.2
+  m_Intensity: 0.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -2191,6 +2216,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boost Trail (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5341300212709265102, guid: 32c90fcc58618754db3d8bf11817437b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5341300212709265103, guid: 32c90fcc58618754db3d8bf11817437b,
         type: 3}
       propertyPath: m_RootOrder
@@ -2545,7 +2575,7 @@ GameObject:
   - component: {fileID: 99198224847535531}
   - component: {fileID: 974094885033439214}
   - component: {fileID: 1617586829918298009}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wheel_frontRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2572,7 +2602,7 @@ GameObject:
   - component: {fileID: 942031630943513403}
   - component: {fileID: 942031630943513404}
   - component: {fileID: 942031630943513405}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Red Car
   m_TagString: Car
   m_Icon: {fileID: 0}
@@ -2724,7 +2754,7 @@ GameObject:
   - component: {fileID: 6623593284853715827}
   - component: {fileID: 766300567824202760}
   - component: {fileID: 6095144478505104071}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wheel_backLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2807,7 +2837,7 @@ GameObject:
   - component: {fileID: 3421533397095445332}
   - component: {fileID: 4184354968385350541}
   - component: {fileID: 8401403138210999511}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2899,6 +2929,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Boost Trail
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341300212709265102, guid: 32c90fcc58618754db3d8bf11817437b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5341300212709265103, guid: 32c90fcc58618754db3d8bf11817437b,
         type: 3}
@@ -3125,7 +3160,7 @@ GameObject:
   - component: {fileID: 2043312577488453781}
   - component: {fileID: 9099822176155421767}
   - component: {fileID: 379995718131294221}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wheel_backRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3143,7 +3178,7 @@ GameObject:
   - component: {fileID: 7039233207204444309}
   - component: {fileID: 6569432403689403143}
   - component: {fileID: 3042851119729107061}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wheel_frontLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3235,6 +3270,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Trail
+      objectReference: {fileID: 0}
+    - target: {fileID: 7983962889174152360, guid: b8fef8b7f97fa934092e1f68659f987e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7983962889174152361, guid: b8fef8b7f97fa934092e1f68659f987e,
         type: 3}
