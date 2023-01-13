@@ -15,7 +15,7 @@ public class RoadsMover : MonoBehaviour
         if (other.CompareTag("Roads"))
         {
             var roadsPos = other.transform.position;
-            _currentZPos += 2;
+            _currentZPos += 4;
             roadsPos.z = _currentZPos;
             other.transform.position = roadsPos;
 
