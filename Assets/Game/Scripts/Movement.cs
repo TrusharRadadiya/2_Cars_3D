@@ -4,7 +4,7 @@ public class Movement : MonoBehaviour
 {
     [SerializeField] protected float _speed = 10f;
     protected Transform _thisTransform;
-    private bool _canMove = true;
+    private bool _canMove = false;
 
     private void Awake()
     {
@@ -17,8 +17,8 @@ public class Movement : MonoBehaviour
         _thisTransform.position += Vector3.forward * _speed * Time.deltaTime;
     }
 
-    public void SetMovement(bool isOn)
+    public void SetMovement(bool shouldMove)
     {
-        _canMove = isOn;
+        _canMove = shouldMove;
     }
 }

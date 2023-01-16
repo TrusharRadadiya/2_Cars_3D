@@ -24,6 +24,8 @@ public class CarMovement : MonoBehaviour
 
     public void Update()
     {
+        if (GameManager.Instance.gameOver) return;
+
         if (_canInput)
         {
             var pos = _thisTransform.position;
@@ -147,6 +149,7 @@ public class CarMovement : MonoBehaviour
     {
         if (other.CompareTag("RoadObject"))
         {
+            GameManager.Instance.ScoreUp();
             Destroy(other.gameObject);
             var mat = _carBodyRenderer.materials[2];
             var defaultColor = mat.color;
