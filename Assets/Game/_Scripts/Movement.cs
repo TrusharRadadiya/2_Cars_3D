@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private CarMovement _leftCar;
-    [SerializeField] private CarMovement _rightCar;
+    [SerializeField] private Car _leftCar;
+    [SerializeField] private Car _rightCar;
     [SerializeField] private float _posToUpdate = 1.1f;
     [SerializeField] private float _degreeToRotate = 35f;
     [SerializeField] private float _angleForSwipeUp = 45;
@@ -25,10 +25,12 @@ public class Movement : MonoBehaviour
         if (!_canMove) return;
         _thisTransform.position += Vector3.forward * _speed * Time.deltaTime;
 
+#if PLATFORM_ANDROID
         for (int i = 0; i < Input.touchCount; i++)
         {
             if (i >= 2) return;
             var touch = Input.GetTouch(i);
+
             if (touch.phase == TouchPhase.Began) _startTouchPos = touch.position;
             else if (touch.phase == TouchPhase.Moved)
             {
@@ -50,8 +52,7 @@ public class Movement : MonoBehaviour
             }
             else if (touch.phase == TouchPhase.Ended)
             {
-                var touchPos = touch.position;                
-
+                var touchPos = touch.position;
                 if (touchPos.x < Screen.width * .5f)
                 {
                     MoveCar(_leftCar);
@@ -62,17 +63,25 @@ public class Movement : MonoBehaviour
                 }
             }
         }
+//#else
+        if (Input.GetKeyUp(KeyCode.A) && _leftCar.isRight) MoveCar(_leftCar);
+        else if (Input.GetKeyUp(KeyCode.D) && !_leftCar.isRight) MoveCar(_leftCar);        
+        else if (Input.GetKeyUp(KeyCode.W)) _leftCar.Boost();
+
+        if (Input.GetKeyUp(KeyCode.LeftArrow) && _rightCar.isRight) MoveCar(_rightCar);        
+        else if (Input.GetKeyUp(KeyCode.RightArrow) && !_rightCar.isRight) MoveCar(_rightCar);        
+        else if (Input.GetKeyUp(KeyCode.UpArrow)) _rightCar.Boost();
+#endif
     }
 
-
-    private void MoveCar(CarMovement car)
+    private void MoveCar(Car car)
     {
         if (!car.canInput || car.IsBoosted) return;
 
         var carTransform = car.transform;
         if (!car.isRight)
         {
-            car.PlaySound();
+            car.PlayWhooshSound();
             car.isRight = true;
             car.canInput = false;
             DOTween.Sequence()
@@ -87,7 +96,7 @@ public class Movement : MonoBehaviour
         }
         else if (car.isRight)
         {
-            car.PlaySound();
+            car.PlayWhooshSound();
             car.isRight = false;
             car.canInput = false;
             DOTween.Sequence()

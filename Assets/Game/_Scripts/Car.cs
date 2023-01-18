@@ -1,37 +1,38 @@
 using UnityEngine;
 using DG.Tweening;
 
-public class CarMovement : MonoBehaviour
+public class Car : MonoBehaviour
 {
-    [HideInInspector] public bool isRight = false;
+    public bool isRight = false;
     [SerializeField] private MeshRenderer _carBodyRenderer;
     [SerializeField] private Color _saturatedColor;
-    [SerializeField] private GameObject _boostTrails;    
+    [SerializeField] private GameObject _boostTrails;
+
+    [Header("AudioSources")]
+    [SerializeField] private AudioSource _whooshSource;
+    [SerializeField] private AudioSource _collectOrbSource;
+    [SerializeField] private AudioSource _boostSource;
+    [SerializeField] private AudioSource _explosionSource;
+
     [HideInInspector] public bool canInput = true;    
     public bool IsBoosted { get; set; }
     
-    private AudioSource _audioSource;    
 
+    public void PlayWhooshSound() => _whooshSource.PlayOneShot(_whooshSource.clip);
 
-    public void Awake()
-    {
-        _audioSource = GetComponent<AudioSource>();
-    }
-
-
-    public void PlaySound()
-    {
-        _audioSource.PlayOneShot(_audioSource.clip);
-    }
+    public void PlayExplosionSound() => _explosionSource.PlayOneShot(_explosionSource.clip);
 
     public void Boost()
     {
+        if (IsBoosted) return;
+
         IsBoosted = true;
         _boostTrails.SetActive(true);
         var mat = _carBodyRenderer.materials[2];
         var defaultColor = mat.color;
 
-        GameManager.Instance.SpeedBoost();
+        _boostSource.PlayOneShot(_boostSource.clip);
+        GameManager.Instance.SpeedBoostEffect();
         DOTween.Sequence()
             .Append(transform.DOLocalMoveZ(2, .15f).SetEase(Ease.InOutFlash))
             .Join(mat.DOColor(_saturatedColor, .15f))
@@ -49,7 +50,7 @@ public class CarMovement : MonoBehaviour
         if (other.CompareTag("RoadObject"))
         {
             GameManager.Instance.ScoreUp();
-            AudioSystem.Instance.PlaySound(GameManager.Instance._collectOrbClip);
+            _collectOrbSource.PlayOneShot(_collectOrbSource.clip);
             Destroy(other.gameObject);
             var mat = _carBodyRenderer.materials[2];
             var defaultColor = mat.color;
@@ -61,9 +62,4 @@ public class CarMovement : MonoBehaviour
                 .Join(mat.DOColor(defaultColor, .15f));
         }
     }
-}
-
-public enum CarSide
-{
-    Left, Right
 }

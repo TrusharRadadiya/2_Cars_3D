@@ -13,8 +13,8 @@ public class Breakable : MonoBehaviour
 
         if (other.CompareTag("Car"))
         {
-            var carMovement = other.GetComponent<CarMovement>();
-            if (!carMovement.IsBoosted)
+            var car = other.GetComponent<Car>();
+            if (!car.IsBoosted)
             {
                 GameManager.Instance.GameOver();
                 other.isTrigger = false;
@@ -34,9 +34,10 @@ public class Breakable : MonoBehaviour
             foreach (var rb in rbs)
                 rb.AddExplosionForce(_explosionForce, this.transform.position, 1, .05f, ForceMode.Impulse);
 
+            car.PlayExplosionSound();
             Destroy(gameObject);
             Destroy(brokenPiece.gameObject, 10);
-            carMovement.IsBoosted = false;
+            car.IsBoosted = false;
         }
     }
 }

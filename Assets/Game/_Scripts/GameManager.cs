@@ -2,6 +2,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -25,8 +26,11 @@ public class GameManager : MonoBehaviour
     public AudioClip _collectOrbClip;
     public AudioClip _whooshClip;
 
+    [Space, SerializeField] private GameObject _settingsAndInfoCanvas;
+
     private bool _gameOver = true;
     public bool gameOver => _gameOver;
+    private Camera _cam;
     
     public static GameManager Instance;
 
@@ -36,10 +40,11 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(this.gameObject);
         }
         else
             Destroy(this.gameObject);
+
+        _cam = Camera.main;
     }
 
     private void Start()
@@ -53,6 +58,7 @@ public class GameManager : MonoBehaviour
     {
         _movementObj.SetMovement(true);
         _gameOver = false;
+        _settingsAndInfoCanvas.SetActive(false);
     }
 
     public void GameOver()
@@ -68,7 +74,7 @@ public class GameManager : MonoBehaviour
 
     public void ShakeCamera() => _cameraShake.Shake();
 
-    public void SpeedBoost()
+    public void SpeedBoostEffect()
     {
         DOTween.Sequence()
             .Append(DOTween.To(() => _speedVolume.weight, x => _speedVolume.weight = x, 1, .15f).SetEase(Ease.InSine))
@@ -87,4 +93,9 @@ public class GameManager : MonoBehaviour
     }
 
     public void OnClick_RestartText() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+    public void OnToggle_PostProcessing(bool isOn)
+    {
+        _cam.GetUniversalAdditionalCameraData().renderPostProcessing = isOn;
+    }
 }
