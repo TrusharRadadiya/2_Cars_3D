@@ -1,15 +1,13 @@
 # 2 Cars 3D
 
-<!--
 <p>
-  <a href="https://simmer.io/@TrusharRadadiya/gun-sprint" target="_blank">
-      <img align="center" src="https://img.shields.io/static/v1?label=Live on Simmer.io &message=Play Now &color=<COLOR>" alt="APK" />
+  <a href="https://mega.nz/file/IkZQSbDJ#iuPoSaW8tOsSR9_6Av5WXBjZYJgoCdA0Xfv8IcH9NOk" target="_blank">
+      <img align="center" src="https://img.shields.io/static/v1?label=APK &message=Download &color=<COLOR>" alt="APK" />
   </a>
-  <a href="https://youtu.be/YIRb46qV2a8" target="_blank">
+  <a href="https://youtu.be/CYyf0DfzqGs" target="_blank">
       <img align="center" src="https://img.shields.io/static/v1?label=Gameplay Video &message=Watch on YouTube &color=<COLOR>" alt="YouTube"/>
   </a>
 </p>
--->
 
 ## Overview of Original Game
 
